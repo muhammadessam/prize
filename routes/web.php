@@ -23,6 +23,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::middleware('auth')->group(function () {
 
-    Route::get('/dashboard', 'Admin\DashboardController@index')->name('dashboardHome');
+    Route::get('/dashboard', 'Admin\DashBoardController@index')->name('dashboardHome');
 
 });
