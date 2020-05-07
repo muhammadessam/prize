@@ -43,8 +43,8 @@
 <div class="wrapper">
 
 
-@include('Admin.Layout.nav')
-@include('Admin.Layout.sidebar')
+@include('admin.layout.nav')
+@include('admin.layout.sidebar')
 
 <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
