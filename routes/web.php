@@ -21,7 +21,7 @@ Auth::routes(['register' => false]);
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::middleware('auth')->group(function () {
+Route::middleware('auth')->prefix('admin')->group(function () {
 
     /* Dashboard Route */
     Route::get('/dashboard', 'Admin\DashBoardController@index')->name('dashboardHome');
