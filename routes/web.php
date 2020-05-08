@@ -23,6 +23,13 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::middleware('auth')->group(function () {
 
+    /* Dashboard Route */
     Route::get('/dashboard', 'Admin\DashBoardController@index')->name('dashboardHome');
+
+    // questions
+    Route::resource('questions', 'Admin\QuestionController');
+
+    // Gifts
+    Route::resource('gifts', 'Admin\GiftController');
 
 });
