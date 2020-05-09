@@ -16,7 +16,7 @@ class QuestionController extends Controller
     public function index()
     {
         $questions = Question::all();
-        return view('admin.questions.index');
+        return view('admin.questions.index', compact('questions'));
     }
 
     /**
@@ -26,7 +26,7 @@ class QuestionController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.questions.create');
     }
 
     /**
@@ -37,7 +37,18 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'question' => 'required',
+            'a1' => 'required',
+            'correct' => 'required'
+        ], [
+            'question.required' => 'من فضلك تاكد من ادخال نص السؤال',
+            'a1.required' => 'الاجابةالاولي اجبارية',
+            'correct.required' => 'الاجابة الصحيحة علي السؤال اجبارية'
+        ], []);
+        Question::create($request->all());
+        alert()->success('تم بنجاح');
+        return redirect()->back();
     }
 
     /**
@@ -59,7 +70,7 @@ class QuestionController extends Controller
      */
     public function edit(Question $question)
     {
-        //
+        return view('admin.questions.edit', compact('question'));
     }
 
     /**
@@ -71,7 +82,18 @@ class QuestionController extends Controller
      */
     public function update(Request $request, Question $question)
     {
-        //
+        $request->validate([
+            'question' => 'required',
+            'a1' => 'required',
+            'correct' => 'required'
+        ], [
+            'question.required' => 'من فضلك تاكد من ادخال نص السؤال',
+            'a1.required' => 'الاجابةالاولي اجبارية',
+            'correct.required' => 'الاجابة الصحيحة علي السؤال اجبارية'
+        ], []);
+        $question->update($request->all());
+        alert()->success('تم بنجاح');
+        return redirect()->route('questions.index');
     }
 
     /**
@@ -82,6 +104,8 @@ class QuestionController extends Controller
      */
     public function destroy(Question $question)
     {
-        //
+        $question->delete();
+        alert()->success('تم بنجاح');
+        return back();
     }
 }

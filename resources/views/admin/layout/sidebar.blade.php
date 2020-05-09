@@ -24,9 +24,10 @@
                             </p>
                         </a>
                     </li>
-                    <li class="nav-item has-treeview {{Request::segment(1)=='gifts' ? 'menu-open' : ''}}">
+
+                    <li class="nav-item has-treeview {{Request::segment(2)=='gifts' ? 'menu-open' : ''}}">
                         <a href="#"
-                           class="nav-link {{Request::segment(1)=='gifts' ? 'active' : ''}} ">
+                           class="nav-link {{Request::segment(2)=='gifts' ? 'active' : ''}} ">
                             <i class="nav-icon fa fa-user-circle"></i>
                             <p>
                                 الهدايا
@@ -37,7 +38,7 @@
 
                             <li class="nav-item">
                                 <a href="{{route('gifts.index')}}"
-                                   class="nav-link {{Request::segment(1)=='gifts' ? 'active' : ''}}">
+                                   class="nav-link {{Request::segment(2)=='gifts' ? 'active' : ''}}">
                                     <i class="fa fa-circle-o nav-icon"></i>
                                     <p>الكل</p>
                                     <span class="badge badge-primary"></span>
@@ -46,6 +47,27 @@
                         </ul>
                     </li>
 
+                    <li class="nav-item has-treeview {{Request::segment(2)=='questions' ? 'menu-open' : ''}}">
+                        <a href="#"
+                           class="nav-link {{Request::segment(2)=='questions' ? 'active' : ''}} ">
+                            <i class="nav-icon fa fa-user-circle"></i>
+                            <p>
+                                الاسئلة
+                                <i class="right fa fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+
+                            <li class="nav-item">
+                                <a href="{{route('questions.index')}}"
+                                   class="nav-link {{Request::segment(2)=='questions' ? 'active' : ''}}">
+                                    <i class="fa fa-circle-o nav-icon"></i>
+                                    <p>الكل</p>
+                                    <span class="badge badge-primary"></span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
 
                 </ul>
             </nav>

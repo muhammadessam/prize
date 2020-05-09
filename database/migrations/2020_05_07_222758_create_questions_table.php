@@ -16,10 +16,9 @@ class CreateQuestionsTable extends Migration
         Schema::create('questions', function (Blueprint $table) {
             $table->id();
             $table->text('question');
-            $table->enum('type', ['c', 't']);
             $table->string('a1');
-            $table->string('a2');
-            $table->string('a3');
+            $table->string('a2')->nullable()->default(null);
+            $table->string('a3')->nullable()->default(null);
             $table->string('correct');
             $table->timestamps();
         });
