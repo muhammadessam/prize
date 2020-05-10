@@ -64,7 +64,6 @@
         </div>
         <!-- /.col -->
     </div>
-
 @endsection
 
 @section('javascript')

@@ -24,11 +24,18 @@
                             </p>
                         </a>
                     </li>
-
+                    <li class="nav-item">
+                        <a href="/" class="nav-link">
+                            <i class="nav-icon fa fa-home"></i>
+                            <p>
+                                زيارة الواجهة الرئيسية
+                            </p>
+                        </a>
+                    </li>
                     <li class="nav-item has-treeview {{Request::segment(2)=='gifts' ? 'menu-open' : ''}}">
                         <a href="#"
                            class="nav-link {{Request::segment(2)=='gifts' ? 'active' : ''}} ">
-                            <i class="nav-icon fa fa-user-circle"></i>
+                            <i class="nav-icon fa fa-gift"></i>
                             <p>
                                 الهدايا
                                 <i class="right fa fa-angle-left"></i>
@@ -50,7 +57,7 @@
                     <li class="nav-item has-treeview {{Request::segment(2)=='questions' ? 'menu-open' : ''}}">
                         <a href="#"
                            class="nav-link {{Request::segment(2)=='questions' ? 'active' : ''}} ">
-                            <i class="nav-icon fa fa-user-circle"></i>
+                            <i class="nav-icon fa fa-question-circle-o"></i>
                             <p>
                                 الاسئلة
                                 <i class="right fa fa-angle-left"></i>
@@ -67,6 +74,36 @@
                                 </a>
                             </li>
                         </ul>
+                    </li>
+                    <li class="nav-item has-treeview {{Request::segment(2)=='banners' ? 'menu-open' : ''}}">
+                        <a href="#"
+                           class="nav-link {{Request::segment(2)=='banners' ? 'active' : ''}} ">
+                            <i class="nav-icon fa fa-question-circle-o"></i>
+                            <p>
+                                البنرات
+                                <i class="right fa fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+
+                            <li class="nav-item">
+                                <a href="{{route('banners.index')}}"
+                                   class="nav-link {{Request::segment(2)=='banners' ? 'active' : ''}}">
+                                    <i class="fa fa-circle-o nav-icon"></i>
+                                    <p>الكل</p>
+                                    <span class="badge badge-primary"></span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{route('settings.index')}}"
+                           class="nav-link {{Request::segment(2)=='settings' ? 'active' : ''}} ">
+                            <i class="nav-icon fa fa-cogs"></i>
+                            <p>
+                                الاعدادات
+                            </p>
+                        </a>
                     </li>
 
                 </ul>

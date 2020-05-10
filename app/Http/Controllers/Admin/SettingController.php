@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Gift;
+use App\Models\Setting;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class GiftController extends Controller
+class SettingController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,8 @@ class GiftController extends Controller
      */
     public function index()
     {
-        $gifts = Gift::all();
-        return view('admin.gifts.index', compact('gifts'));
+        $setting = Setting::all()->first();
+        return view('admin.settings.index', compact('setting'));
     }
 
     /**
@@ -26,7 +26,7 @@ class GiftController extends Controller
      */
     public function create()
     {
-        return view('admin.gifts.create');
+        //
     }
 
     /**
@@ -37,32 +37,16 @@ class GiftController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'type_value' => 'required',
-            'text' => 'required_if:type_value,T',
-            'image' => 'required_if:type_value,I'
-        ]);
-        if ($request['type_value'] == 'I') {
-            $path =  $this->storeFile("uploads", "image");
-            Gift::create([
-                'img_path' => $path
-            ]);
-        } else {
-            Gift::create([
-                'text' => $request['text']
-            ]);
-        }
-        alert()->success('تم ');
-        return redirect()->route('gifts.index');
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param \App\Gift $gift
+     * @param \App\Setting $setting
      * @return \Illuminate\Http\Response
      */
-    public function show(Gift $gift)
+    public function show(Setting $setting)
     {
         //
     }
@@ -70,10 +54,10 @@ class GiftController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param \App\Gift $gift
+     * @param \App\Setting $setting
      * @return \Illuminate\Http\Response
      */
-    public function edit(Gift $gift)
+    public function edit(Setting $setting)
     {
         //
     }
@@ -82,24 +66,31 @@ class GiftController extends Controller
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @param \App\Gift $gift
+     * @param \App\Setting $setting
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Gift $gift)
+    public function update(Request $request, Setting $setting)
     {
-        //
+        $request->validate([
+            'active' => 'required',
+            'closingMessage' => 'required'
+        ]);
+        $setting->update([
+            'isSiteActive' => $request['active'],
+            'closingMessage' => $request['closingMessage']
+        ]);
+        alert()->success('تم');
+        return redirect()->back();
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param \App\Gift $gift
+     * @param \App\Setting $setting
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Gift $gift)
+    public function destroy(Setting $setting)
     {
-        $gift->delete();
-        alert()->success('تم ');
-        return redirect()->route('gifts.index');
+        //
     }
 }

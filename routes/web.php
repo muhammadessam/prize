@@ -27,9 +27,26 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::get('/dashboard', 'Admin\DashBoardController@index')->name('dashboardHome');
 
     // questions
-    Route::resource('questions', 'Admin\QuestionController');
+    Route::prefix('questions')->group(function () {
+        Route::resource('questions', 'Admin\QuestionController');
+    });
 
     // Gifts
-    Route::resource('gifts', 'Admin\GiftController');
+    Route::prefix('gifts')->group(function () {
+        Route::resource('gifts', 'Admin\GiftController');
+    });
+
+
+    //settings
+    Route::prefix('settings')->group(function () {
+        Route::resource('settings', 'Admin\SettingController');
+    });
+
+    //Banner
+    Route::prefix('banners')->group(function () {
+        Route::resource('banners', 'Admin\BannerController')->except(['store', 'create', 'destroy']);
+    });
+
+
 
 });

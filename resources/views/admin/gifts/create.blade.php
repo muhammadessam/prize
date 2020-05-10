@@ -35,8 +35,7 @@
                                            name="image"
                                            id="exampleInputFile" value="{{old('license_pic')}}">
 
-                                    <label class="custom-file-label" for="exampleInputFile">الصورة رخصة
-                                        القيادة</label>
+                                    <label class="custom-file-label" for="exampleInputFile">صورة الهدية</label>
                                 </div>
                                 <div class="input-group-append">
                                     <span class="input-group-text" id="">ارسال صورة</span>
