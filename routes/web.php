@@ -47,6 +47,10 @@ Route::middleware('auth')->prefix('admin')->group(function () {
         Route::resource('banners', 'Admin\BannerController')->except(['store', 'create', 'destroy']);
     });
 
-
+    Route::prefix('contact')->group(function () {
+        Route::resource('contact', 'Admin\ContactUsController');
+        Route::get('/respondTo/{contact}', 'Admin\ContactUsController@respondGet')->name('respond.get');
+        Route::post('/respondTo/{contact}', 'Admin\ContactUsController@respondPost')->name('respond.post');
+    });
 
 });
