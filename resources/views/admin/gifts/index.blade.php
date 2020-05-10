@@ -17,8 +17,6 @@
                     <table style="text-align: center" id="gifts" class="table table-bordered table-striped">
                         <thead>
                         <tr>
-                            <th>رقم الهدية</th>
-                            <th>النوع</th>
                             <th>الصورة</th>
                             <th>النص</th>
                             <th>اجراء</th>
@@ -27,8 +25,6 @@
                         <tbody>
                         @foreach($gifts as $gift)
                             <tr>
-                                <td>{{$gift->id}}</td>
-                                <td>{{$gift->text ? "نص":"صورة"}}</td>
                                 <td>
                                     @if($gift->img_path)
                                         <img src="{{asset($gift->img_path)}}" alt=""
@@ -45,10 +41,10 @@
                                     @endif
                                 </td>
                                 <td class="d-flex justify-content-center">
-                                    <form action="{{route('gifts.destroy', $gift)}}" method="post">
+                                    <form id="deleteForm" action="{{route('gifts.destroy', $gift)}}" method="post">
                                         @csrf
                                         @method('delete')
-                                        <button class="btn btn-danger" type="submit"><i class="fa fa-trash"></i>
+                                        <button class="btn btn-danger" type="submit" onclick="deleteFunction()"><i class="fa fa-trash"></i>
                                         </button>
                                     </form>
                                 </td>

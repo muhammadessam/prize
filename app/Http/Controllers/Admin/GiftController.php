@@ -37,21 +37,15 @@ class GiftController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'type_value' => 'required',
-            'text' => 'required_if:type_value,T',
-            'image' => 'required_if:type_value,I'
-        ]);
-        if ($request['type_value'] == 'I') {
-            $path =  $this->storeFile("uploads", "image");
-            Gift::create([
-                'img_path' => $path
-            ]);
-        } else {
-            Gift::create([
-                'text' => $request['text']
-            ]);
+        $gift = new Gift();
+        if ($request->get('text')) {
+            $gift['text'] = $request->get('text');
         }
+        if ($request->has('image')) {
+            $path = $this->storeFile("uploads", "image");
+            $gift['img_path'] = $path;
+        }
+        $gift->save();
         alert()->success('تم ');
         return redirect()->route('gifts.index');
     }

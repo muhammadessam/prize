@@ -4,7 +4,7 @@
     <a href="#" class="brand-link">
         <img src="{{asset('dist/img/AdminLTELogo.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
              style="opacity: .8">
-        <span class="brand-text font-weight-light">لوحة تحكم زاد</span>
+        <span class="brand-text font-weight-light">لوحة تحكم</span>
     </a>
 
     <!-- Sidebar -->
@@ -75,6 +75,17 @@
                             </li>
                         </ul>
                     </li>
+
+                    <li class="nav-item">
+                        <a href="{{route('settings.index')}}"
+                           class="nav-link {{Request::segment(2)=='settings' ? 'active' : ''}} ">
+                            <i class="nav-icon fa fa-cogs"></i>
+                            <p>
+                                الاعدادات
+                            </p>
+                        </a>
+                    </li>
+
                     <li class="nav-item has-treeview {{Request::segment(2)=='banners' ? 'menu-open' : ''}}">
                         <a href="#"
                            class="nav-link {{Request::segment(2)=='banners' ? 'active' : ''}} ">
@@ -96,16 +107,6 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="nav-item">
-                        <a href="{{route('settings.index')}}"
-                           class="nav-link {{Request::segment(2)=='settings' ? 'active' : ''}} ">
-                            <i class="nav-icon fa fa-cogs"></i>
-                            <p>
-                                الاعدادات
-                            </p>
-                        </a>
-                    </li>
-
                 </ul>
             </nav>
             <!-- /.sidebar-menu -->

@@ -6,11 +6,9 @@
             <div class="card">
                 <div class="card-header d-flex justify-content-lg-between">
                     <div class="col-11">
-                        <h3 class="card-title">الهدايا</h3>
+                        <h3 class="card-title">البنرات</h3>
                     </div>
-                    <div class="col-1">
-                        <a class="btn btn-primary" href="{{route('gifts.create')}}">اضافة هدية</a>
-                    </div>
+
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
