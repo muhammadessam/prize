@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="csrf-token" content="{{csrf_token()}}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>project_customer_psd1</title>
+    <title>Prize</title>
     <link rel="stylesheet" href="{{asset('assets/bootstrap/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/fonts/font-awesome.min.css')}}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cairo">
@@ -28,14 +28,14 @@
                             <div><i class="fa fa-envelope"></i></div>
                             <div><span>إتصل بنا</span></div>
                         </a>
-                        <a href="#" class="links_menu">
-                            <div><i class="fa fa-user"></i></div>
-                            <div><span>التسجيل</span></div>
-                        </a>
-                        <a href="#" class="links_menu">
-                            <div><i class="fa fa-pencil"></i></div>
-                            <div><span>من نحن</span></div>
-                        </a>
+{{--                        <a href="#" class="links_menu">--}}
+{{--                            <div><i class="fa fa-user"></i></div>--}}
+{{--                            <div><span>التسجيل</span></div>--}}
+{{--                        </a>--}}
+{{--                        <a href="#" class="links_menu">--}}
+{{--                            <div><i class="fa fa-pencil"></i></div>--}}
+{{--                            <div><span>من نحن</span></div>--}}
+{{--                        </a>--}}
                         <a href="{{url('/')}}" class="links_menu">
                             <div><i class="fa fa-home"></i></div>
                             <div><span>الرئيسية</span></div>

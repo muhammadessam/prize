@@ -1928,17 +1928,116 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      questions: []
+      show: [false, false, false, false],
+      start: false,
+      last: false,
+      questions: [],
+      randomAnswers: 0
     };
+  },
+  methods: {
+    answer: function answer(question, _answer, index) {
+      this.$set(question, 'answer', _answer);
+      this.show = [false, false, false, false];
+      this.show[index + 1] = true;
+
+      if (index == 3) {
+        this.last = true;
+      }
+    }
   },
   mounted: function mounted() {
     var _this = this;
 
     window.axios.get(route('visitorQuestions')).then(function (res) {
       _this.questions = res.data;
+
+      _this.questions.forEach(function (q) {
+        q.answer = null;
+      });
     });
   }
 });
@@ -19544,50 +19643,389 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("div", [
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-primary btn_start",
-          attrs: { type: "button" },
-          on: { click: function($event) {} }
-        },
-        [_vm._v("إبدء الآن")]
-      )
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "col-md-12" }, [
-      _c(
-        "div",
-        { staticClass: "div_content_quits" },
-        _vm._l(_vm.questions, function(question) {
-          return _c("ul", { staticClass: "list-group" }, [
-            _c("li", { staticClass: "list-group-item li_header" }, [
-              _c("span", [_vm._v(_vm._s(question.question))])
-            ]),
-            _vm._v(" "),
-            _c("li", { staticClass: "list-group-item li_menu" }, [
-              _c("span", [_vm._v(_vm._s(question.a1))])
-            ]),
-            _vm._v(" "),
-            _c("li", { staticClass: "list-group-item li_menu" }, [
-              _c("span", [_vm._v(_vm._s(question.a2))])
-            ]),
-            _vm._v(" "),
-            _c("li", { staticClass: "list-group-item li_menu" }, [
-              _c("span", [_vm._v(_vm._s(question.a3))])
-            ]),
-            _vm._v(" "),
-            _c("li", { staticClass: "list-group-item li_menu" }, [
-              _c("span", [_vm._v(_vm._s(question.correct))])
+  return _c(
+    "div",
+    [
+      !_vm.start
+        ? _c(
+            "div",
+            {
+              staticClass: "d-flex justify-content-center align-items-center",
+              staticStyle: { height: "400px" }
+            },
+            [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary btn_start",
+                  attrs: { type: "button" },
+                  on: {
+                    click: function($event) {
+                      _vm.start = true
+                      _vm.show[0] = true
+                    }
+                  }
+                },
+                [_vm._v("إبدء الآن")]
+              )
+            ]
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.last
+        ? _c(
+            "div",
+            {
+              staticClass: "d-flex justify-content-center align-items-center",
+              staticStyle: { height: "400px" }
+            },
+            [
+              _c(
+                "a",
+                {
+                  staticClass: "btn btn-primary btn_start",
+                  attrs: { href: "google.com", type: "button" }
+                },
+                [_vm._v("احصل علي جائزتك")]
+              )
+            ]
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _vm._l(_vm.questions, function(question, index) {
+        return _vm.show[index] && _vm.randomAnswers == 0
+          ? _c("div", { staticClass: "col-md-12" }, [
+              _vm._v(
+                "\n        " +
+                  _vm._s((_vm.randomAnswers = Math.floor(Math.random() * 3))) +
+                  "\n        "
+              ),
+              _c("div", { staticClass: "div_content_quits" }, [
+                _c("ul", { staticClass: "list-group" }, [
+                  _c("li", { staticClass: "list-group-item li_header" }, [
+                    _c("span", [_vm._v(_vm._s(question.question))])
+                  ]),
+                  _vm._v(" "),
+                  question.a1 != null
+                    ? _c(
+                        "li",
+                        {
+                          staticClass: "list-group-item li_menu",
+                          on: {
+                            click: function($event) {
+                              return _vm.answer(question, question.a1, index)
+                            }
+                          }
+                        },
+                        [_c("span", [_vm._v(_vm._s(question.a1))])]
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  question.a2 != null
+                    ? _c(
+                        "li",
+                        {
+                          staticClass: "list-group-item li_menu",
+                          on: {
+                            click: function($event) {
+                              return _vm.answer(question, question.a2, index)
+                            }
+                          }
+                        },
+                        [_c("span", [_vm._v(_vm._s(question.a2))])]
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  question.a3 != null
+                    ? _c(
+                        "li",
+                        {
+                          staticClass: "list-group-item li_menu",
+                          on: {
+                            click: function($event) {
+                              return _vm.answer(question, question.a3, index)
+                            }
+                          }
+                        },
+                        [_c("span", [_vm._v(_vm._s(question.a3))])]
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  question.correct != null
+                    ? _c(
+                        "li",
+                        {
+                          staticClass: "list-group-item li_menu",
+                          on: {
+                            click: function($event) {
+                              return _vm.answer(
+                                question,
+                                question.correct,
+                                index
+                              )
+                            }
+                          }
+                        },
+                        [_c("span", [_vm._v(_vm._s(question.correct))])]
+                      )
+                    : _vm._e()
+                ])
+              ])
             ])
-          ])
-        }),
-        0
-      )
-    ])
-  ])
+          : _vm._e()
+      }),
+      _vm._v(" "),
+      _vm._l(_vm.questions, function(question, index) {
+        return _vm.show[index] && _vm.randomAnswers == 1
+          ? _c("div", { staticClass: "col-md-12" }, [
+              _vm._v(
+                "\n        " +
+                  _vm._s((_vm.randomAnswers = Math.floor(Math.random() * 4))) +
+                  "\n        "
+              ),
+              _c("div", { staticClass: "div_content_quits" }, [
+                _c("ul", { staticClass: "list-group" }, [
+                  _c("li", { staticClass: "list-group-item li_header" }, [
+                    _c("span", [_vm._v(_vm._s(question.question))])
+                  ]),
+                  _vm._v(" "),
+                  question.correct != null
+                    ? _c(
+                        "li",
+                        {
+                          staticClass: "list-group-item li_menu",
+                          on: {
+                            click: function($event) {
+                              return _vm.answer(
+                                question,
+                                question.correct,
+                                index
+                              )
+                            }
+                          }
+                        },
+                        [_c("span", [_vm._v(_vm._s(question.correct))])]
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  question.a1 != null
+                    ? _c(
+                        "li",
+                        {
+                          staticClass: "list-group-item li_menu",
+                          on: {
+                            click: function($event) {
+                              return _vm.answer(question, question.a1, index)
+                            }
+                          }
+                        },
+                        [_c("span", [_vm._v(_vm._s(question.a1))])]
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  question.a2 != null
+                    ? _c(
+                        "li",
+                        {
+                          staticClass: "list-group-item li_menu",
+                          on: {
+                            click: function($event) {
+                              return _vm.answer(question, question.a2, index)
+                            }
+                          }
+                        },
+                        [_c("span", [_vm._v(_vm._s(question.a2))])]
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  question.a3 != null
+                    ? _c(
+                        "li",
+                        {
+                          staticClass: "list-group-item li_menu",
+                          on: {
+                            click: function($event) {
+                              return _vm.answer(question, question.a3, index)
+                            }
+                          }
+                        },
+                        [_c("span", [_vm._v(_vm._s(question.a3))])]
+                      )
+                    : _vm._e()
+                ])
+              ])
+            ])
+          : _vm._e()
+      }),
+      _vm._v(" "),
+      _vm._l(_vm.questions, function(question, index) {
+        return _vm.show[index] && _vm.randomAnswers == 2
+          ? _c("div", { staticClass: "col-md-12" }, [
+              _vm._v(
+                "\n        " +
+                  _vm._s((_vm.randomAnswers = Math.floor(Math.random() * 4))) +
+                  "\n        "
+              ),
+              _c("div", { staticClass: "div_content_quits" }, [
+                _c("ul", { staticClass: "list-group" }, [
+                  _c("li", { staticClass: "list-group-item li_header" }, [
+                    _c("span", [_vm._v(_vm._s(question.question))])
+                  ]),
+                  _vm._v(" "),
+                  question.a1 != null
+                    ? _c(
+                        "li",
+                        {
+                          staticClass: "list-group-item li_menu",
+                          on: {
+                            click: function($event) {
+                              return _vm.answer(question, question.a1, index)
+                            }
+                          }
+                        },
+                        [_c("span", [_vm._v(_vm._s(question.a1))])]
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  question.correct != null
+                    ? _c(
+                        "li",
+                        {
+                          staticClass: "list-group-item li_menu",
+                          on: {
+                            click: function($event) {
+                              return _vm.answer(
+                                question,
+                                question.correct,
+                                index
+                              )
+                            }
+                          }
+                        },
+                        [_c("span", [_vm._v(_vm._s(question.correct))])]
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  question.a2 != null
+                    ? _c(
+                        "li",
+                        {
+                          staticClass: "list-group-item li_menu",
+                          on: {
+                            click: function($event) {
+                              return _vm.answer(question, question.a2, index)
+                            }
+                          }
+                        },
+                        [_c("span", [_vm._v(_vm._s(question.a2))])]
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  question.a3 != null
+                    ? _c(
+                        "li",
+                        {
+                          staticClass: "list-group-item li_menu",
+                          on: {
+                            click: function($event) {
+                              return _vm.answer(question, question.a3, index)
+                            }
+                          }
+                        },
+                        [_c("span", [_vm._v(_vm._s(question.a3))])]
+                      )
+                    : _vm._e()
+                ])
+              ])
+            ])
+          : _vm._e()
+      }),
+      _vm._v(" "),
+      _vm._l(_vm.questions, function(question, index) {
+        return _vm.show[index] && _vm.randomAnswers == 3
+          ? _c("div", { staticClass: "col-md-12" }, [
+              _vm._v(
+                "\n        " +
+                  _vm._s((_vm.randomAnswers = Math.floor(Math.random() * 4))) +
+                  "\n        "
+              ),
+              _c("div", { staticClass: "div_content_quits" }, [
+                _c("ul", { staticClass: "list-group" }, [
+                  _c("li", { staticClass: "list-group-item li_header" }, [
+                    _c("span", [_vm._v(_vm._s(question.question))])
+                  ]),
+                  _vm._v(" "),
+                  question.a1 != null
+                    ? _c(
+                        "li",
+                        {
+                          staticClass: "list-group-item li_menu",
+                          on: {
+                            click: function($event) {
+                              return _vm.answer(question, question.a1, index)
+                            }
+                          }
+                        },
+                        [_c("span", [_vm._v(_vm._s(question.a1))])]
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  question.a2 != null
+                    ? _c(
+                        "li",
+                        {
+                          staticClass: "list-group-item li_menu",
+                          on: {
+                            click: function($event) {
+                              return _vm.answer(question, question.a2, index)
+                            }
+                          }
+                        },
+                        [_c("span", [_vm._v(_vm._s(question.a2))])]
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  question.correct != null
+                    ? _c(
+                        "li",
+                        {
+                          staticClass: "list-group-item li_menu",
+                          on: {
+                            click: function($event) {
+                              return _vm.answer(
+                                question,
+                                question.correct,
+                                index
+                              )
+                            }
+                          }
+                        },
+                        [_c("span", [_vm._v(_vm._s(question.correct))])]
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  question.a3 != null
+                    ? _c(
+                        "li",
+                        {
+                          staticClass: "list-group-item li_menu",
+                          on: {
+                            click: function($event) {
+                              return _vm.answer(question, question.a3, index)
+                            }
+                          }
+                        },
+                        [_c("span", [_vm._v(_vm._s(question.a3))])]
+                      )
+                    : _vm._e()
+                ])
+              ])
+            ])
+          : _vm._e()
+      })
+    ],
+    2
+  )
 }
 var staticRenderFns = []
 render._withStripped = true

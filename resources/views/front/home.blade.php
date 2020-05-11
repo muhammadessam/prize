@@ -14,7 +14,7 @@
     <div class="row" style="padding: 50px 0px;">
         <div class="col">
             <div style="margin: auto;display: block;background: rgb(20,6,56);padding: 20px;width: 100%;">
-                <div class="row">
+                <div class="row" style="height: 500px;">
                     <div class="col">
                         <example-component></example-component>
                     </div>
