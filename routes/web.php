@@ -17,6 +17,9 @@ use Illuminate\Support\Facades\Route;
 Auth::routes(['register' => false]);
 
 Route::get('/', 'HomeController@index')->name('home');
+Route::get('/contactus', 'HomeController@contactUsGet')->name('contact.get');
+Route::post('/contactus', 'HomeController@contactUsPost')->name('contact.post');
+
 
 Route::middleware('auth')->prefix('admin')->group(function () {
 
@@ -26,6 +29,7 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     // questions
     Route::prefix('questions')->group(function () {
         Route::resource('questions', 'Admin\QuestionController');
+        Route::get('/visitorQuestions', 'Admin\QuestionController@visitorQuestions')->name('visitorQuestions');
     });
 
     // Gifts
@@ -49,5 +53,6 @@ Route::middleware('auth')->prefix('admin')->group(function () {
         Route::get('/respondTo/{contact}', 'Admin\ContactUsController@respondGet')->name('respond.get');
         Route::post('/respondTo/{contact}', 'Admin\ContactUsController@respondPost')->name('respond.post');
     });
+
 
 });

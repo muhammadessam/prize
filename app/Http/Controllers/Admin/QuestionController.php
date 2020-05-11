@@ -108,4 +108,9 @@ class QuestionController extends Controller
         alert()->success('تم بنجاح');
         return back();
     }
+
+    public function visitorQuestions()
+    {
+        return Question::all()->random(4)->toArray();
+    }
 }
