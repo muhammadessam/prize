@@ -15,7 +15,7 @@
 
 </head>
 <body
-    style="background-image: url(&quot;assets/img/backgorund.png&quot;);background-size: cover;background-repeat: no-repeat;background-attachment: fixed;font-family: Cairo;">
+    style="background-image: url(&quot;{{asset('assets/img/backgorund.png')}}&quot;);background-size: cover;background-repeat: no-repeat;background-attachment: fixed;font-family: Cairo;">
 <div
     style="position: fixed;width: 100%;height: 100%;top: 0;left: 0;background-image: url(&quot;{{asset('assets/img/backgorund_trans.png')}}&quot;);background-position: center;background-attachment: fixed;background-repeat: no-repeat;z-index: 0;"></div>
 <header style="margin-top: 30px;z-index: 10;">
@@ -28,14 +28,14 @@
                             <div><i class="fa fa-envelope"></i></div>
                             <div><span>إتصل بنا</span></div>
                         </a>
-{{--                        <a href="#" class="links_menu">--}}
-{{--                            <div><i class="fa fa-user"></i></div>--}}
-{{--                            <div><span>التسجيل</span></div>--}}
-{{--                        </a>--}}
-{{--                        <a href="#" class="links_menu">--}}
-{{--                            <div><i class="fa fa-pencil"></i></div>--}}
-{{--                            <div><span>من نحن</span></div>--}}
-{{--                        </a>--}}
+                        {{--                        <a href="#" class="links_menu">--}}
+                        {{--                            <div><i class="fa fa-user"></i></div>--}}
+                        {{--                            <div><span>التسجيل</span></div>--}}
+                        {{--                        </a>--}}
+                        {{--                        <a href="#" class="links_menu">--}}
+                        {{--                            <div><i class="fa fa-pencil"></i></div>--}}
+                        {{--                            <div><span>من نحن</span></div>--}}
+                        {{--                        </a>--}}
                         <a href="{{url('/')}}" class="links_menu">
                             <div><i class="fa fa-home"></i></div>
                             <div><span>الرئيسية</span></div>
@@ -60,7 +60,8 @@
     <div class="container" style="height: 100%;">
         <div class="row justify-content-center align-items-center" style="height: 100%;">
             <div class="col-sm-12 col-md-5 col-lg-6 col-xl-6">
-                <div><a href="#"><img src="{{asset('assets/img/sgywin_41.png')}}" style="height: 50px;margin: auto;display: block;"></a>
+                <div><a href="#"><img src="{{asset('assets/img/sgywin_41.png')}}"
+                                      style="height: 50px;margin: auto;display: block;"></a>
                 </div>
             </div>
             <div class="col">
@@ -74,9 +75,8 @@
 </footer>
 @routes
 @include('sweetalert::alert')
-<script src="{{asset('js/app.js')}}"></script>
-<script src="{{asset('assets/js/jquery.min.js')}}"></script>
-<script src="{{asset('assets/bootstrap/js/bootstrap.min.js')}}"></script>
-</body>
 
+<script src="{{asset('js/app.js')}}"></script>
+</body>
+@yield('javascript')
 </html>

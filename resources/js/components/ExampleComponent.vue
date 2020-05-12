@@ -5,7 +5,7 @@
         </div>
 
         <div style="height: 400px;" class="d-flex justify-content-center align-items-center" v-if="last">
-            <a href="google.com" class="btn btn-primary btn_start" type="button">احصل علي جائزتك</a>
+            <button @click="result" class="btn btn-primary btn_start" type="button">احصل علي جائزتك</button>
         </div>
         <div class="col-md-12" v-for="(question, index) in questions" v-if="show[index] && randomAnswers==0">
             {{randomAnswers = Math.floor(Math.random()*3)}}
@@ -107,9 +107,11 @@
                 last: false,
                 questions: [],
                 randomAnswers: 0,
+                res: 0,
             }
         },
         methods: {
+            route: route,
             answer(question, answer, index) {
                 this.$set(question, 'answer', answer);
                 this.show = [false, false, false, false];
@@ -117,6 +119,14 @@
                 if (index == 3) {
                     this.last = true;
                 }
+            },
+            result() {
+                this.questions.forEach((q) => {
+                    if (q.answer == q.correct) {
+                        this.res++;
+                    }
+                })
+                window.location.href = route('prize.get', this.res);
             }
         },
 

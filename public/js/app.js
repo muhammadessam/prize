@@ -2015,10 +2015,12 @@ __webpack_require__.r(__webpack_exports__);
       start: false,
       last: false,
       questions: [],
-      randomAnswers: 0
+      randomAnswers: 0,
+      res: 0
     };
   },
   methods: {
+    route: route,
     answer: function answer(question, _answer, index) {
       this.$set(question, 'answer', _answer);
       this.show = [false, false, false, false];
@@ -2027,15 +2029,25 @@ __webpack_require__.r(__webpack_exports__);
       if (index == 3) {
         this.last = true;
       }
+    },
+    result: function result() {
+      var _this = this;
+
+      this.questions.forEach(function (q) {
+        if (q.answer == q.correct) {
+          _this.res++;
+        }
+      });
+      window.location.href = route('prize.get', this.res);
     }
   },
   mounted: function mounted() {
-    var _this = this;
+    var _this2 = this;
 
     window.axios.get(route('visitorQuestions')).then(function (res) {
-      _this.questions = res.data;
+      _this2.questions = res.data;
 
-      _this.questions.forEach(function (q) {
+      _this2.questions.forEach(function (q) {
         q.answer = null;
       });
     });
@@ -19681,10 +19693,11 @@ var render = function() {
             },
             [
               _c(
-                "a",
+                "button",
                 {
                   staticClass: "btn btn-primary btn_start",
-                  attrs: { href: "google.com", type: "button" }
+                  attrs: { type: "button" },
+                  on: { click: _vm.result }
                 },
                 [_vm._v("احصل علي جائزتك")]
               )

@@ -19,6 +19,8 @@ Auth::routes(['register' => false]);
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/contactus', 'HomeController@contactUsGet')->name('contact.get');
 Route::post('/contactus', 'HomeController@contactUsPost')->name('contact.post');
+Route::get('/visitorQuestions', 'Admin\QuestionController@visitorQuestions')->name('visitorQuestions');
+Route::get('/result/{res}', 'HomeController@getPrize')->name('prize.get');
 
 
 Route::middleware('auth')->prefix('admin')->group(function () {
@@ -29,7 +31,6 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     // questions
     Route::prefix('questions')->group(function () {
         Route::resource('questions', 'Admin\QuestionController');
-        Route::get('/visitorQuestions', 'Admin\QuestionController@visitorQuestions')->name('visitorQuestions');
     });
 
     // Gifts
