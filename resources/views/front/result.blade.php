@@ -44,30 +44,33 @@
                     <div class="col">
                         <div style="padding: 20px 0px;">
                             <div class="row">
-                                <div class="col-xl-12">
-                                    <div class="div_gifts">
-                                        <div class="row">
-                                            <div class="col-lg-5">
-                                                <div><img src="{{asset('assets/img/ing-five.png')}}" class="img_gifts">
+                                @foreach($gifts as $gift)
+                                    <div class="col-xl-12">
+                                        <div class="div_gifts">
+                                            <div class="row">
+                                                <div class="col-lg-5">
+                                                    <div>
+                                                        <img src="{{asset($gift->img_path)}}"
+                                                              class="img_gifts">
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col">
-                                                <div>
-                                                    <div class="row">
-                                                        <div class="col-xl-12">
-                                                            <div>
-                                                                <div class="form-group">
-                                                                    <h4 class="text-right heading_gifts">لاب توب ابل _
-                                                                        كاك بوك</h4>
+                                                <div class="col">
+                                                    <div>
+                                                        <div class="row">
+                                                            <div class="col-xl-12">
+                                                                <div>
+                                                                    <div class="form-group">
+                                                                        <h4 class="text-right heading_gifts">{{$gift->text}}</h4>
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="col">
-                                                            <div>
-                                                                <div class="form-group">
-                                                                    <button class="btn btn-primary btn_gifts"
-                                                                            type="button">أحصل على الهاتف
-                                                                    </button>
+                                                            <div class="col">
+                                                                <div>
+                                                                    <div class="form-group">
+                                                                        <button class="btn btn-primary btn_gifts"
+                                                                                type="button">أحصل على الجائزة
+                                                                        </button>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -76,73 +79,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-xl-12">
-                                    <div class="div_gifts">
-                                        <div class="row">
-                                            <div class="col-lg-5">
-                                                <div><img src="{{asset('assets/img/ing-three%20(1).png')}}"
-                                                          class="img_gifts"></div>
-                                            </div>
-                                            <div class="col">
-                                                <div>
-                                                    <div class="row">
-                                                        <div class="col-xl-12">
-                                                            <div>
-                                                                <div class="form-group">
-                                                                    <h4 class="text-right heading_gifts">لاب توب ابل _
-                                                                        كاك بوك</h4>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col">
-                                                            <div>
-                                                                <div class="form-group">
-                                                                    <button class="btn btn-primary btn_gifts"
-                                                                            type="button">أحصل على الهاتف
-                                                                    </button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="div_gifts">
-                                        <div class="row">
-                                            <div class="col-lg-5">
-                                                <div><img src="{{asset('assets/img/ing-one.png')}}" class="img_gifts">
-                                                </div>
-                                            </div>
-                                            <div class="col">
-                                                <div>
-                                                    <div class="row">
-                                                        <div class="col-xl-12">
-                                                            <div>
-                                                                <div class="form-group">
-                                                                    <h4 class="text-right heading_gifts">لاب توب ابل _
-                                                                        كاك بوك</h4>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col">
-                                                            <div>
-                                                                <div class="form-group">
-                                                                    <button class="btn btn-primary btn_gifts"
-                                                                            type="button">أحصل على الهاتف
-                                                                    </button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>
@@ -171,5 +108,5 @@
     </div>
 @endsection
 @section('javascript')
-    <script src="{{asset('js/script_include.js')}}"></script>
+    {!! \App\Models\Setting::all()->first()->code !!}
 @endsection

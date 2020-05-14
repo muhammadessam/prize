@@ -93,4 +93,20 @@ class SettingController extends Controller
     {
         //
     }
+
+    public function changeCodeGet()
+    {
+        $code = Setting::all()->first()->code;
+        return view('admin.code.index', compact('code'));
+    }
+
+    public function changeCodePost(Request $request)
+    {
+        $s = Setting::all()->first();
+        $s->update([
+            'code' => $request->code
+        ]);
+        alert()->success('تم الحفظ');
+        return redirect()->back();
+    }
 }

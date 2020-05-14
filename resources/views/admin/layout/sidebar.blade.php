@@ -86,6 +86,16 @@
                         </a>
                     </li>
 
+                    <li class="nav-item">
+                        <a href="{{route('code.get')}}"
+                           class="nav-link {{Request::segment(2)=='code' ? 'active' : ''}} ">
+                            <i class="nav-icon fa fa-cogs"></i>
+                            <p>
+                                الكود
+                            </p>
+                        </a>
+                    </li>
+
                     <li class="nav-item has-treeview {{Request::segment(2)=='banners' ? 'menu-open' : ''}}">
                         <a href="#"
                            class="nav-link {{Request::segment(2)=='banners' ? 'active' : ''}} ">

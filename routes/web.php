@@ -55,5 +55,9 @@ Route::middleware('auth')->prefix('admin')->group(function () {
         Route::post('/respondTo/{contact}', 'Admin\ContactUsController@respondPost')->name('respond.post');
     });
 
+    Route::prefix('code')->group(function () {
+        Route::get('/changeCode', 'Admin\SettingController@changeCodeGet')->name('code.get');
+        Route::post('/changeCode', 'Admin\SettingController@changeCodePost')->name('code.post');
+    });
 
 });

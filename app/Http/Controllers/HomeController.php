@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\ContactUs;
+use App\Models\Gift;
 use App\Models\Ip;
 use App\Models\Question;
 use App\Setting;
@@ -54,18 +55,19 @@ class HomeController extends Controller
     public function getPrize(Request $request, $res)
     {
         $ip = Ip::where('visitor_ip', $request->ip())->first();
+        $gifts = Gift::all()->random(3);
         if ($ip) {
             if ($ip->updated_at->diffInHours(now()) < 1) {
                 alert()->error('من فضلك انتظر ساعة ');
                 return redirect()->back();
             } else {
-                return view('front.result', compact($res));
+                return view('front.result', compact('res', 'gifts'));
             }
         } else {
             Ip::create([
                 'visitor_ip' => $request->ip()
             ]);
         }
-        return view('front.result', compact('res'));
+        return view('front.result', compact('res', 'gifts'));
     }
 }
