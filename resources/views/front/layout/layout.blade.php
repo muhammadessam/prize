@@ -56,9 +56,9 @@
         @yield('contentFront')
     </div>
 </main>
-<div class="container" style="margin: 5px;">
+<div class="container mb-2">
     <div class="row">
-        <div class="col-12">
+        <div class="col-12 d-flex justify-content-center">
             <img src="{{asset(\App\Models\Banner::where('name', 'الفوتر')->first()->img)}}"  alt="">
         </div>
     </div>
