@@ -17,8 +17,8 @@ use Illuminate\Support\Facades\Route;
 Auth::routes(['register' => false]);
 
 Route::get('/', 'HomeController@index')->name('home');
-Route::get('/contactus', 'HomeController@contactUsGet')->name('contact.get');
-Route::post('/contactus', 'HomeController@contactUsPost')->name('contact.post');
+Route::get('/contactUs', 'HomeController@contactUsGet')->name('contact.get');
+Route::post('/contactUs', 'HomeController@contactUsPost')->name('contact.post');
 Route::get('/visitorQuestions', 'Admin\QuestionController@visitorQuestions')->name('visitorQuestions');
 Route::get('/result/{res}', 'HomeController@getPrize')->name('prize.get');
 

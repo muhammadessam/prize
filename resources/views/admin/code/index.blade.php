@@ -10,7 +10,7 @@
                     <form method="post" action="{{route('code.post')}}">
                         @csrf
                         <div class="form-group">
-                            <input type="text" name="code" class="form-control" value="{{$code}}">
+                            <input type="text" name="scriptCode" class="form-control" value="{{$code}}">
                         </div>
                         <button class="btn btn-primary">حفظ</button>
                     </form>

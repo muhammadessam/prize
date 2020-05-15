@@ -56,7 +56,15 @@
         @yield('contentFront')
     </div>
 </main>
+<div class="container" style="margin: 5px;">
+    <div class="row">
+        <div class="col-12">
+            <img src="{{asset(\App\Models\Banner::where('name', 'الفوتر')->first()->img)}}"  alt="">
+        </div>
+    </div>
+</div>
 <footer style="background: rgb(20,6,56);color: white;padding: 0px;z-index: 10;position: relative;">
+
     <div class="container" style="height: 100%;">
         <div class="row justify-content-center align-items-center" style="height: 100%;">
             <div class="col-sm-12 col-md-5 col-lg-6 col-xl-6">
@@ -73,6 +81,7 @@
         </div>
     </div>
 </footer>
+
 @routes
 @include('sweetalert::alert')
 
