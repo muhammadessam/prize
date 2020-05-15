@@ -6,6 +6,7 @@
 /.idea
 /public/uploads
 /public/banners
+/w
 .env
 .env.backup
 .phpunit.result.cache
