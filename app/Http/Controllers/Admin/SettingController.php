@@ -102,10 +102,9 @@ class SettingController extends Controller
 
     public function changeCodePost(Request $request)
     {
-
         $s = Setting::all()->first();
         $s->update([
-            'code' => $request['scriptCode']
+            'code' => $request->scriptCode
         ]);
         alert()->success('تم الحفظ');
         return redirect()->back();

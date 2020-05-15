@@ -12,6 +12,9 @@
                         <div class="form-group">
                             <input type="text" name="scriptCode" class="form-control" value="{{$code}}">
                         </div>
+                        @error('scriptCode')
+                        {{$message}}
+                        @enderror
                         <button class="btn btn-primary">حفظ</button>
                     </form>
                 </div>
