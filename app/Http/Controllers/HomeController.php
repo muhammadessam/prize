@@ -57,8 +57,8 @@ class HomeController extends Controller
         $ip = Ip::where('visitor_ip', $request->ip())->first();
         $gifts = Gift::all()->random(3);
         if ($ip) {
-            if ($ip->updated_at->diffInHours(now()) < 1) {
-                alert()->error('من فضلك انتظر ساعة ');
+            if ($ip->updated_at->diffInHours(now()) < 24) {
+                alert()->error('من فضلك انتظر 24 ساعة ');
                 return redirect()->back();
             } else {
                 return view('front.result', compact('res', 'gifts'));
