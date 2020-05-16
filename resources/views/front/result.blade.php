@@ -67,9 +67,13 @@
                                                             <div class="col">
                                                                 <div>
                                                                     <div class="form-group">
-                                                                        <button class="btn btn-primary btn_gifts"
-                                                                                type="button">أحصل على الجائزة
-                                                                        </button>
+                                                                        <form method="post"
+                                                                            action="{{route('get.single.prize', $gift)}}">
+                                                                            @csrf
+                                                                            <button  class="btn btn-primary btn_gifts"
+                                                                                    type="submit">أحصل على الجائزة
+                                                                            </button>
+                                                                        </form>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -106,7 +110,4 @@
             </div>
         </div>
     </div>
-@endsection
-@section('javascript')
-    {!! \App\Models\Setting::all()->first()->code !!}
 @endsection

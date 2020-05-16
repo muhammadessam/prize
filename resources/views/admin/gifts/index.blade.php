@@ -19,6 +19,7 @@
                         <tr>
                             <th>الصورة</th>
                             <th>النص</th>
+                            <th>الحالة</th>
                             <th>اجراء</th>
                         </tr>
                         </thead>
@@ -40,11 +41,15 @@
                                         <span class="badge badge-danger">-</span>
                                     @endif
                                 </td>
+                                <td>
+                                   <span class="badge  {{$gift->used ?"badge-danger" : "badge-success"}}">{{$gift->used ? 'مستخدمة' :'متاحة'}}</span>
+                                </td>
                                 <td class="d-flex justify-content-center">
                                     <form id="deleteForm" action="{{route('gifts.destroy', $gift)}}" method="post">
                                         @csrf
                                         @method('delete')
-                                        <button class="btn btn-danger" type="submit" onclick="deleteFunction()"><i class="fa fa-trash"></i>
+                                        <button class="btn btn-danger" type="submit" onclick="deleteFunction()"><i
+                                                class="fa fa-trash"></i>
                                         </button>
                                     </form>
                                 </td>

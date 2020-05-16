@@ -70,4 +70,18 @@ class HomeController extends Controller
         }
         return view('front.result', compact('res', 'gifts'));
     }
+
+
+    public function getGift(Request $request, Gift $gift)
+    {
+        $ip = Ip::where('visitor_ip', $request->ip())->first();
+        $ip['updated_at'] = now();
+        $gift['used'] = true;
+
+        $ip->save();
+        $gift->save();
+
+        return view('front.prize', compact('gift'));
+    }
 }
+
