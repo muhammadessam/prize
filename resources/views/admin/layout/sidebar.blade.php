@@ -32,6 +32,17 @@
                             </p>
                         </a>
                     </li>
+
+                    <li class="nav-item">
+                        <a href="{{route('settings.index')}}"
+                           class="nav-link {{Request::segment(2)=='settings' ? 'active' : ''}} ">
+                            <i class="nav-icon fa fa-cogs"></i>
+                            <p>
+                                الاعدادات
+                            </p>
+                        </a>
+                    </li>
+
                     <li class="nav-item has-treeview {{Request::segment(2)=='gifts' ? 'menu-open' : ''}}">
                         <a href="#"
                            class="nav-link {{Request::segment(2)=='gifts' ? 'active' : ''}} ">
@@ -76,15 +87,7 @@
                         </ul>
                     </li>
 
-                    <li class="nav-item">
-                        <a href="{{route('settings.index')}}"
-                           class="nav-link {{Request::segment(2)=='settings' ? 'active' : ''}} ">
-                            <i class="nav-icon fa fa-cogs"></i>
-                            <p>
-                                الاعدادات
-                            </p>
-                        </a>
-                    </li>
+
 
                     <li class="nav-item">
                         <a href="{{route('code.get')}}"

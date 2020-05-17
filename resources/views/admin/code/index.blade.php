@@ -5,6 +5,12 @@
             <div class="card">
                 <div class="card-header">
                     <h3>الكود</h3>
+                    <div class="alert alert-info">
+                       ادخل الكود بالطريقة الصحيح عند نسخ الرابط اختر custom Domain مثال
+                        &lt;
+                        script type="text/javascript" src="/s_include.php?id=891913"&gt;
+                        &lt;/script&gt;
+                    </div>
                 </div>
                 <div class="card-body">
                     <form method="post" action="{{route('code.post')}}">
