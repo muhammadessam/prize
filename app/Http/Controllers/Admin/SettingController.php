@@ -73,11 +73,12 @@ class SettingController extends Controller
     {
         $request->validate([
             'active' => 'required',
-            'closingMessage' => 'required'
+            'name' => 'required'
         ]);
         $setting->update([
             'isSiteActive' => $request['active'],
-            'closingMessage' => $request['closingMessage']
+            'closingMessage' => $request['closingMessage'],
+            'name' => $request['name']
         ]);
         alert()->success('تم');
         return redirect()->back();

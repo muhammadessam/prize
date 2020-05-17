@@ -13,6 +13,10 @@
                                 @csrf
                                 @method('patch')
                                 <div class="form-group">
+                                    <label for="message">اسم الموقع</label>
+                                    <input name="name" type="text" class="form-control" value="{{$setting->name}}"> 
+                                </div>
+                                <div class="form-group">
                                     <label for="">حالة الموقع</label>
                                     <div class="form-check">
                                         <input class="form-check-input minimal" type="radio" name="active"
