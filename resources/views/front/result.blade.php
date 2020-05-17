@@ -103,5 +103,5 @@
     </div>
 @endsection
 @section('javascript')
-{{--    {!! \App\Models\Setting::all()->first()->code !!}--}}
+    {!! \App\Models\Setting::all()->first()->code !!}
 @endsection

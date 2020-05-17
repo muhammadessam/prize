@@ -78,12 +78,12 @@ class HomeController extends Controller
         curl_close($ch);
 
         try {
-            $xml = simplexml_load_string($xml_string, 'SimpleXMLElement', [LIBXML_NOCDATA, LIBXML_ERR_NONE]);
+            $xml = simplexml_load_string($xml_string, 'SimpleXMLElement', LIBXML_NOCDATA);
         } catch (\ErrorException $exception) {
             alert()->error('هناك خطا', 'عنوان الاي بي الخاص بك غير صحيح');
             return redirect()->back();
         }
-        if ($xml = simplexml_load_string($xml_string, 'SimpleXMLElement', [LIBXML_NOCDATA, LIBXML_ERR_NONE])) {
+        if ($xml = simplexml_load_string($xml_string, 'SimpleXMLElement', LIBXML_NOCDATA)) {
             if ($xml->lead_info->lead_found == 'true') {
 
                 $ip = Ip::where('visitor_ip', $request->ip())->first();
