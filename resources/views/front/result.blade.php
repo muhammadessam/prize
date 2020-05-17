@@ -44,14 +44,14 @@
                     <div class="col">
                         <div style="padding: 20px 0px;">
                             <div class="row">
-                                @foreach($gifts as $gift)
+                                @forelse($gifts as $gift)
                                     <div class="col-xl-12">
                                         <div class="div_gifts">
                                             <div class="row">
                                                 <div class="col-lg-5">
                                                     <div>
                                                         <img src="{{asset($gift->img_path)}}"
-                                                              class="img_gifts">
+                                                             class="img_gifts">
                                                     </div>
                                                 </div>
                                                 <div class="col">
@@ -68,9 +68,9 @@
                                                                 <div>
                                                                     <div class="form-group">
                                                                         <form method="post"
-                                                                            action="{{route('get.single.prize', $gift)}}">
+                                                                              action="{{route('get.single.prize', $gift)}}">
                                                                             @csrf
-                                                                            <button  class="btn btn-primary btn_gifts"
+                                                                            <button class="btn btn-primary btn_gifts"
                                                                                     type="submit">أحصل على الجائزة
                                                                             </button>
                                                                         </form>
@@ -83,7 +83,38 @@
                                             </div>
                                         </div>
                                     </div>
-                                @endforeach
+                                @empty
+                                    <div class="col-xl-12">
+                                        <div class="div_gifts">
+                                            <div class="row">
+                                                <div class="col-lg-5">
+                                                    <div>
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <div>
+                                                        <div class="row">
+                                                            <div class="col-xl-12">
+                                                                <div>
+                                                                    <div class="form-group">
+                                                                        <h4 class="text-right heading_gifts">لا توجد هدايا الان فضلا انتظر قليلا وحاول ثانية</h4>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col">
+                                                                <div>
+                                                                    <div class="form-group">
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforelse
                             </div>
                         </div>
                     </div>

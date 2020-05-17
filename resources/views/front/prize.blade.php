@@ -80,5 +80,5 @@
     </div>
 @endsection
 @section('javascript')
-    {!! \App\Models\Setting::all()->first()->code !!}
+    <script src="{{asset('js/script_include.js')}}"></script>
 @endsection

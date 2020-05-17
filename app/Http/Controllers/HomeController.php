@@ -11,8 +11,10 @@ use App\User;
 use Awssat\Visits\Models\Visit;
 use Awssat\Visits\Visits;
 use Carbon\Carbon;
+use GuzzleHttp\Client;
 use Hamcrest\Core\Set;
 use Illuminate\Http\Request;
+use Ramsey\Collection\Exception\InvalidArgumentException;
 
 class HomeController extends Controller
 {
@@ -54,8 +56,22 @@ class HomeController extends Controller
 
     public function getPrize(Request $request, $res)
     {
+        $gifts = [];
         $ip = Ip::where('visitor_ip', $request->ip())->first();
-        $gifts = Gift::all()->random(3);
+        try {
+            $gifts = Gift::where('used', false)->get();
+            $gifts = $gifts->random(3);
+
+        } catch (\Exception $exception) {
+            try {
+                $gifts = Gift::all()->where('used', false)->random(1);
+            } catch (\Exception $exception) {
+                $gifts = [];
+                alert()->error('لا توجد هدايا كافية فضلا انتظر');
+                return view('front.result', compact('res', 'gifts'));
+            }
+        }
+
         if ($ip) {
             if ($ip->updated_at->diffInHours(now()) < 24) {
                 alert()->error('من فضلك انتظر 24 ساعة ');
@@ -74,6 +90,8 @@ class HomeController extends Controller
 
     public function getGift(Request $request, Gift $gift)
     {
+
+
         $ip = Ip::where('visitor_ip', $request->ip())->first();
         $ip['updated_at'] = now();
         $gift['used'] = true;
