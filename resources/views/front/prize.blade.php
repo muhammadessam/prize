@@ -79,6 +79,3 @@
         </div>
     </div>
 @endsection
-@section('javascript')
-    {!! \App\Models\Setting::all()->first()->code !!}
-@endsection

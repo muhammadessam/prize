@@ -56,56 +56,76 @@ class HomeController extends Controller
 
     public function getPrize(Request $request, $res)
     {
-        $gifts = [];
-        $ip = Ip::where('visitor_ip', $request->ip())->first();
+        return view('front.result', compact('res'));
+    }
+
+
+    public function getGift(Request $request)
+    {
+        header('Access-Control-Allow-Origin: *');
+        header('Access-Control-Allow-Methods: POST');
+        header('Access-Control-Max-Age: 1000');
+        header('Access-Control-Allow-Headers: Content-Type');
+
+        $check_value = $_SERVER['REMOTE_ADDR']; //lets use the customers ip to check for leads with.
+
+        $feedurl = 'http://www.cpagrip.com/common/lead_check_rss.php?user_id=96777&key=b4a92c73f424a97e8b3af1c75c171181&time=1day&check=ip&value=' . $request->getClientIp();
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $feedurl);
+        curl_setopt($ch, CURLOPT_HEADER, false);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $xml_string = curl_exec($ch);
+        curl_close($ch);
+
         try {
-            $gifts = Gift::where('used', false)->get();
-            $gifts = $gifts->random(3);
-
-        } catch (\Exception $exception) {
-            try {
-                $gifts = Gift::all()->where('used', false)->random(1);
-            } catch (\Exception $exception) {
-                $gifts = [];
-                alert()->error('لا توجد هدايا كافية فضلا انتظر');
-                return view('front.result', compact('res', 'gifts'));
-            }
+            $xml = simplexml_load_string($xml_string, 'SimpleXMLElement', [LIBXML_NOCDATA, LIBXML_ERR_NONE]);
+        } catch (\ErrorException $exception) {
+            alert()->error('هناك خطا', 'عنوان الاي بي الخاص بك غير صحيح');
+            return redirect()->back();
         }
+        if ($xml = simplexml_load_string($xml_string, 'SimpleXMLElement', [LIBXML_NOCDATA, LIBXML_ERR_NONE])) {
+            if ($xml->lead_info->lead_found == 'true') {
 
-        if ($ip) {
-            if ($ip->updated_at->diffInHours(now()) < 24) {
-                alert()->error('من فضلك انتظر 24 ساعة ');
-                return redirect()->back();
+                $ip = Ip::where('visitor_ip', $request->ip())->first();
+                try {
+                    $gift = Gift::where('used', false)->get();
+                    $gift = $gift->random(1);
+
+                } catch (\Exception $exception) {
+
+                    alert()->error('لا يتوفر هدايا وجوائز حاليا');
+                    return redirect()->back();
+                }
+
+                if ($ip) {
+                    if ($ip->updated_at->diffInHours(now()) < 24) {
+                        alert()->error('من فضلك انتظر 24 ساعة ');
+                        return redirect()->back();
+                    } else {
+                        $ip['updated_at'] = now();
+                        $gift['used'] = true;
+                        $ip->save();
+                        $gift->save();
+                        return view('front.prize', compact('gift'));
+                    }
+                } else {
+                    Ip::create([
+                        'visitor_ip' => $request->ip()
+                    ]);
+                    $gift['used'] = true;
+                    $gift->save();
+                    return view('front.prize', compact('gift'));
+                }
             } else {
-                return view('front.result', compact('res', 'gifts'));
+                alert()->error('لم تكمل الاعلان', 'من فضلك اقفل مانع الاعلانات وتاكد من اتصالك بالانترنت حتي تتاح لك الهدية');
+                return redirect()->back();
             }
         } else {
-            Ip::create([
-                'visitor_ip' => $request->ip()
-            ]);
+            alert()->error('هناك خطا', 'لم نتسطع جلب الاعلانات لاكمال استلام الجائزة');
+            return redirect()->back();
         }
-        return view('front.result', compact('res', 'gifts'));
+
+
     }
-
-
-    public function getGift(Request $request, Gift $gift)
-    {
-
-
-        $ip = Ip::where('visitor_ip', $request->ip())->first();
-        $ip['updated_at'] = now();
-        $gift['used'] = true;
-
-        $ip->save();
-        $gift->save();
-
-        return view('front.prize', compact('gift'));
-    }
-
-    public function offerCallback(Request $request)
-    {
-        dd($request->all());
-    }
-
 }
 
