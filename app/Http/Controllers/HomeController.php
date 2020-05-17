@@ -101,5 +101,11 @@ class HomeController extends Controller
 
         return view('front.prize', compact('gift'));
     }
+
+    public function offerCallback(Request $request)
+    {
+        dd($request->all());
+    }
+
 }
 

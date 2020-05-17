@@ -22,7 +22,7 @@ Route::post('/contactUs', 'HomeController@contactUsPost')->name('contact.post');
 Route::get('/visitorQuestions', 'Admin\QuestionController@visitorQuestions')->name('visitorQuestions');
 Route::get('/result/{res}', 'HomeController@getPrize')->name('prize.get');
 Route::post('/gift/{gift}', 'HomeController@getGift')->name('get.single.prize');
-
+Route::post('/offerCallback', 'HomeController@offerCallback');
 
 Route::middleware('auth')->prefix('admin')->group(function () {
 
